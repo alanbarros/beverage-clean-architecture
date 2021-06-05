@@ -1,6 +1,7 @@
 using Application.Boundaries;
 using Application.Boundaries.HireDev;
 using Application.UseCase.HireDevUseCase.Handlers;
+using Domain.Entities;
 using Xunit;
 
 namespace Standards

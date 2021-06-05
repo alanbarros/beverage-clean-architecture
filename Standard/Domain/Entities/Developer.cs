@@ -14,49 +14,10 @@ namespace Domain.Entities
         public double DrinkingRate { get; set; }
 
         public async Task<Code> Drink<T>(T beverage) where T : Beverage
-            => await this.Drink(beverage);
+            => await beverage.Turns(this);
 
-        private int GetDrinkDelay(Beverage beverage)
-            => ((int)Math.Floor(DrinkingRate)) * beverage.GetTotalDrinkLevel();
+        public int GetDrinkDelay(Beverage beverage)
+            => ((int)Math.Floor(DrinkingRate * 10));
 
-        protected async virtual Task<Code> Drink(Beer beer)
-        {
-            return await Task.Run(async () =>
-            {
-                await Task.Delay(GetDrinkDelay(beer));
-
-                return new FreshCode();
-            });
-        }
-
-        protected async virtual Task<Code> Drink(Coffee coffee)
-        {
-            return await Task.Run(async () =>
-            {
-                await Task.Delay(GetDrinkDelay(coffee));
-
-                return new HotCode();
-            });
-        }
-
-        protected async virtual Task<Code> Drink(Tea tea)
-        {
-            return await Task.Run(async () =>
-            {
-                await Task.Delay(GetDrinkDelay(tea));
-
-                return new SweetCode();
-            });
-        }
-
-        protected async virtual Task<Code> Drink(Vodka vodka)
-        {
-            return await Task.Run(async () =>
-            {
-                await Task.Delay(GetDrinkDelay(vodka));
-
-                return new DeadCode();
-            });
-        }
     }
 }
