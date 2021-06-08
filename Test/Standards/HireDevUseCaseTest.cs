@@ -1,8 +1,7 @@
 using Application.Boundaries;
 using Application.Boundaries.HireDev;
-using Application.UseCase.HireDevUseCase.Handlers;
-using Domain.Entities;
 using Xunit;
+using UseCase = Application.UseCase.HireDevUseCase;
 
 namespace Standards
 {
@@ -23,7 +22,7 @@ namespace Standards
         [Fact]
         public void ShouldHireADev()
         {
-            var request = new Application.UseCase.HireDevUseCase.Request();
+            var request = new UseCase::Request();
             _useCase.Execute(request);
 
             Assert.NotNull(_output.Result);
